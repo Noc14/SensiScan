@@ -1,0 +1,10 @@
+tkinter
+pathlib
+requests
+beautifulsoup4
+selenium
+lxml
+chardet
+python-magic
+pycryptodome
+pyyaml 

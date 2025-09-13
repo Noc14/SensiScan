@@ -1,0 +1,32 @@
+- group: "测试规则组"
+  rules:
+  - name: "API接口测试"
+    loaded: true
+    regex: '\/api\/[a-zA-Z0-9_\/]+'
+  - name: "邮箱地址测试"
+    loaded: true
+    regex: '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+  - name: "手机号测试"
+    loaded: true
+    regex: '1[3-9]\d{9}'
+  - name: "禁用的规则"
+    loaded: false
+    regex: '这个规则不会被导入'
+
+- group: "密钥信息"
+  rules:
+  - name: "API密钥"
+    loaded: true
+    regex: 'api[_-]?key[\'"]?\s*[:=]\s*[\'"]([a-zA-Z0-9_-]{16,})[\'"]'
+  - name: "访问令牌"
+    loaded: true
+    regex: 'access[_-]?token[\'"]?\s*[:=]\s*[\'"]([a-zA-Z0-9_-]{16,})[\'"]'
+
+- group: "数据库连接"
+  rules:
+  - name: "MongoDB连接"
+    loaded: true
+    regex: 'mongodb://[^\'\"\\s]+'
+  - name: "MySQL连接"
+    loaded: true
+    regex: 'mysql://[^\'\"\\s]+' 

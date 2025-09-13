@@ -1,0 +1,60 @@
+{
+  "scanner_settings": {
+    "default_thread_count": 4,
+    "max_file_size_mb": 50,
+    "default_file_types": "*.js,*.jsx,*.ts,*.tsx,*.vue,*.html,*.css,*.json,*.xml,*.txt,*.py,*.java,*.php,*.asp,*.aspx",
+    "encoding_detection": true,
+    "skip_binary_files": true
+  },
+  "ui_settings": {
+    "window_width": 1200,
+    "window_height": 800,
+    "theme": "default",
+    "font_size": 10
+  },
+  "advanced_rules": {
+    "云服务密钥": [
+      "AKIA[0-9A-Z]{16}",
+      "aws_secret_access_key['\"]?\\s*[:=]\\s*['\"]([a-zA-Z0-9/+=]{40})['\"]",
+      "aliyun[_-]?access[_-]?key['\"]?\\s*[:=]\\s*['\"]([a-zA-Z0-9_-]{16,})['\"]",
+      "tencent[_-]?secret[_-]?key['\"]?\\s*[:=]\\s*['\"]([a-zA-Z0-9_-]{16,})['\"]"
+    ],
+    "JWT令牌": [
+      "eyJ[A-Za-z0-9_-]*\\.[A-Za-z0-9_-]*\\.[A-Za-z0-9_-]*"
+    ],
+    "SSH密钥": [
+      "-----BEGIN RSA PRIVATE KEY-----",
+      "-----BEGIN DSA PRIVATE KEY-----",
+      "-----BEGIN EC PRIVATE KEY-----",
+      "-----BEGIN OPENSSH PRIVATE KEY-----"
+    ],
+    "证书信息": [
+      "-----BEGIN CERTIFICATE-----",
+      "-----BEGIN PRIVATE KEY-----"
+    ],
+    "URL模式": [
+      "https?://[^\\s<>\"']+",
+      "ftp://[^\\s<>\"']+",
+      "file://[^\\s<>\"']+"
+    ],
+    "敏感路径": [
+      "/etc/passwd",
+      "/etc/shadow",
+      "/var/log/[^\\s]+",
+      "C:\\\\Windows\\\\System32\\\\config\\\\[^\\s]+"
+    ],
+    "代码注释中的TODO": [
+      "TODO[:\\s]+[^\\n\\r]+",
+      "FIXME[:\\s]+[^\\n\\r]+",
+      "HACK[:\\s]+[^\\n\\r]+",
+      "XXX[:\\s]+[^\\n\\r]+"
+    ]
+  },
+  "webpack_settings": {
+    "timeout_seconds": 30,
+    "max_js_files": 50,
+    "analyze_sourcemaps": true,
+    "extract_apis": true,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  }
+} 

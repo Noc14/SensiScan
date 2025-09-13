@@ -1,0 +1,228 @@
+- group: "疑似漏洞"
+  rules:
+  - name: "GET 明文id"
+    loaded: true
+    regex: '(\b(?<!_)(id|\w+id)=(\d{2,15})\b(?![-_\\/]))'
+    color: "green"
+  - name: "GET JSON id"
+    loaded: true
+    regex: '((?:''|")?([a-zA-Z_]*[iI][dD])(?:''|")?\s*:\s*(?:(''|")?(\d{2,15})(?![a-zA-Z0-9_\\/-])(''|")?|\s*(\d{2,15})(?![a-zA-Z0-9_\\/-])))'
+    color: "green"
+  - name: "GET JSON编码 id"
+    loaded: true
+    regex: '((?:%22|%27)?([a-zA-Z_]*id[a-zA-Z0-9.]*)(?:%22|%27)?\s*(?:%3A|:)\s*(?:%22|%27)?(\d{2,15})(?!([a-zA-Z0-9_\\/-]))(?:%22|%27)?)'
+    color: "green"
+  - name: "POST 明文id"
+    loaded: true
+    regex: '(\b(?<!_)(id|\w+id)=(\d{2,15})\b(?![-_\\/]))'
+    color: "green"
+  - name: "POST JSON id"
+    loaded: true
+    regex: '((?:''|")?([a-zA-Z_]*[iI][dD])(?:''|")?\s*:\s*(?:(''|")?(\d{2,15})(?![a-zA-Z0-9_\\/-])(''|")?|\s*(\d{2,15})(?![a-zA-Z0-9_\\/-])))'
+    color: "green"
+  - name: "POST JSON编码 id"
+    loaded: true
+    regex: '((?:%22|%27)?([a-zA-Z_]*id[a-zA-Z0-9.]*)(?:%22|%27)?\s*(?:%3A|:)\s*(?:%22|%27)?(\d{2,15})(?!([a-zA-Z0-9_\\/-]))(?:%22|%27)?)'
+    color: "green"
+  - name: "Java Deserialization"
+    loaded: true
+    regex: '(javax\.faces\.ViewState)'
+    color: "yellow"
+  - name: "Debug Logic Parameters"
+    loaded: true
+    regex: '((access=)|(adm=)|(admin=)|(alter=)|(cfg=)|(clone=)|(config=)|(create=)|(dbg=)|(debug=)|(delete=)|(disable=)|(edit=)|(enable=)|(exec=)|(execute=)|(grant=)|(load=)|(make=)|(modify=)|(rename=)|(reset=)|(root=)|(shell=)|(test=)|(toggl=))'
+    color: "cyan"
+  - name: "URL As A Value"
+    loaded: true
+    regex: '(=(https?)(://|%3a%2f%2f))'
+    color: "cyan"
+  - name: "Upload Form"
+    loaded: true
+    regex: '(type\="file\")'
+    color: "yellow"
+  - name: "DoS Paramters"
+    loaded: true
+    regex: '((size=)|(page=)|(num=)|(limit=)|(start=)|(end=)|(count=))'
+    color: "cyan"
+- group: "其它"
+  rules:
+  - name: "Linkfinder"
+    loaded: false
+    regex: '(?:"|'')(((?:[a-zA-Z]{1,10}://|//)[^"''/]{1,}\.[a-zA-Z]{2,}[^"'']{0,})|((?:/|\.\./|\./)[^"''><,;|*()(%%$^/\\\[\]][^"''><,;|()]{1,})|([a-zA-Z0-9_\-/]{1,}/[a-zA-Z0-9_\-/]{1,}\.(?:[a-zA-Z]{1,4}|action)(?:[\?|#][^"|'']{0,}|))|([a-zA-Z0-9_\-/]{1,}/[a-zA-Z0-9_\-/]{3,}(?:[\?|#][^"|'']{0,}|))|([a-zA-Z0-9_\-]{1,}\.(?:\w)(?:[\?|#][^"|'']{0,}|)))(?:"|'')'
+    color: "gray"
+  - name: "Source Map"
+    loaded: true
+    regex: '(\.js\.map)'
+    color: "pink"
+  - name: "HTML Notes"
+    loaded: false
+    regex: '(<!--.*?-->)'
+    color: "magenta"
+  - name: "Create Script"
+    loaded: false
+    regex: '(\+\{.*?\}\[[a-zA-Z]\]\+".*?\.js")'
+    color: "green"
+  - name: "URL Schemes"
+    loaded: false
+    regex: '((?![http]|[https])(([-A-Za-z0-9]{1,20})://[-A-Za-z0-9+&@#/%?=~_|!:,.;\u4E00-\u9FFF]+[-A-Za-z0-9+&@#/%=~_|]))'
+    color: "yellow"
+  - name: "Router Push"
+    loaded: false
+    regex: '(\$router\.push)'
+    color: "magenta"
+  - name: "All URL"
+    loaded: false
+    regex: '(https?://[-A-Za-z0-9+&@#/%?=~_|!:,.;\u4E00-\u9FFF]+[-A-Za-z0-9+&@#/%=~_|])'
+    color: "gray"
+  - name: "MapAPI"
+    loaded: true
+    regex: '(webapi\.amap\.com|apis\.map\.qq\.com|api\.map\.baidu\.com|map\.qq\.com|restapi\.amap\.com)'
+    color: "pink"
+  - name: "qiyuesuoAPI"
+    loaded: true
+    regex: '(licenseId).*(token).*(secret)'
+    color: "pink"
+- group: "指纹信息"
+  rules:
+  - name: "Shiro"
+    loaded: true
+    regex: '(=deleteMe|rememberMe=)'
+    color: "green"
+  - name: "JSON Web Token"
+    loaded: true
+    regex: '(eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9._-]{10,}|eyJ[A-Za-z0-9_\/+-]{10,}\.[A-Za-z0-9._\/+-]{10,})'
+    color: "green"
+  - name: "Swagger UI"
+    loaded: true
+    regex: '((swagger-ui.html)|(\"swagger\":)|(Swagger UI)|(swaggerUi)|(swaggerVersion))'
+    color: "red"
+  - name: "Ueditor"
+    loaded: true
+    regex: '(ueditor\.(config|all)\.js)'
+    color: "green"
+  - name: "Druid"
+    loaded: true
+    regex: '(Druid Stat Index)'
+    color: "orange"
+- group: "敏感信息"
+  rules:
+  - name: "邮箱"
+    loaded: true
+    regex: '(([a-z0-9][_|\.])*[a-z0-9]+@([a-z0-9][-|_|\.])*[a-z0-9]+\.((?!js|css|jpg|jpeg|png|ico)[a-z]{2,}))'
+    color: "yellow"
+  - name: "身份证"
+    loaded: true
+    regex: '[^0-9]((\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)|(\d{6}(18|19|20)\d{2}(0[1-9]|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)))[^0-9]'
+    color: "red"
+  - name: "电话号"
+    loaded: true
+    regex: '[^\w]((?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-79])|(?:5[0-35-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[189]))\d{8})[^\w]'
+    color: "yellow"
+  - name: "银行卡号"
+    loaded: true
+    regex: '^[\dX]{16,19}$'
+    color: "red"
+  - name: "车牌号"
+    loaded: true
+    regex: '([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-HJ-NP-Z][A-HJ-NP-Z0-9]{4,5}[A-HJ-NP-Z0-9挂学警港澳])'
+    color: "yellow"
+  - name: "云key"
+    loaded: true
+    regex: '(((access)(|-|_)(key)(|-|_)(id|secret))|(LTAI[a-z0-9]{12,20}))'
+    color: "yellow"
+  - name: "Windows File/Dir Path"
+    loaded: true
+    regex: '[^\w](([a-zA-Z]:\\(?:\w+\\?)*)|([a-zA-Z]:\\(?:\w+\\)*\w+\.\w+))'
+    color: "green"
+  - name: "密码"
+    loaded: true
+    regex: '((|''|")(|[\w]{1,10})([p](ass|wd|asswd|assword))(|[\w]{1,10})(|''|")(:|=)( |)(''|")(.*?)(''|")(|,))'
+    color: "yellow"
+  - name: "用户名"
+    loaded: true
+    regex: '((|''|")(|[\w]{1,10})(([u](ser|name|sername))|(account)|((((create|update)((d|r)|(by|on|at)))|(creator))))(|[\w]{1,10})(|''|")(:|=)( |)(''|")(.*?)(''|")(|,))'
+    color: "green"
+  - name: "WeCom Key"
+    loaded: true
+    regex: '((corp)(id|secret))'
+    color: "green"
+  - name: "JDBC Connection"
+    loaded: true
+    regex: '(jdbc:[a-z:]+://[a-z0-9\.\-_:;=/@?,&]+)'
+    color: "yellow"
+  - name: "Authorization Header"
+    loaded: true
+    regex: '((basic [a-z0-9=:_\+\/-]{5,100})|(bearer [a-z0-9_.=:_\+\/-]{5,100}))'
+    color: "yellow"
+  - name: "Sensitive Field"
+    loaded: true
+    regex: '((\[)?(''|")?([\w]{0,10})((key)|(secret)|(token)|(config)|(auth)|(access)|(admin))([\w]{0,10})(''|")?(\])?( |)(:|=)( |)(''|")(.*?)(''|")(|,))'
+    color: "yellow"
+  - name: "AccessKey泄露匹配式1"
+    loaded: true
+    regex: '((?i)((access_key|access_token|admin_pass|admin_user|algolia_admin_key|algolia_api_key|alias_pass|alicloud_access_key|amazon_secret_access_key|amazonaws|ansible_vault_password|aos_key|api_key|api_key_secret|api_key_sid|api_secret|api.googlemaps AIza|apidocs|apikey|apiSecret|app_debug|app_id|app_key|app_log_level|app_secret|appkey|appkeysecret|application_key|appsecret|appspot|auth_token|authorizationToken|authsecret|aws_access|aws_access_key_id|aws_bucket|aws_key|aws_secret|aws_secret_key|aws_token|AWSSecretKey|b2_app_key|bashrc password|bintray_apikey|bintray_gpg_password|bintray_key|bintraykey|bluemix_api_key|bluemix_pass|browserstack_access_key|bucket_password|bucketeer_aws_access_key_id|bucketeer_aws_secret_access_key|built_branch_deploy_key|bx_password|cache_driver|cache_s3_secret_key|cattle_access_key|cattle_secret_key|certificate_password|ci_deploy_password|client_secret|client_zpk_secret_key|clojars_password|cloud_api_key|cloud_watch_aws_access_key|cloudant_password|cloudflare_api_key|cloudflare_auth_key|cloudinary_api_secret|cloudinary_name|codecov_token|config|conn.login|connectionstring|consumer_key|consumer_secret|credentials|cypress_record_key|database_password|database_schema_test|datadog_api_key|datadog_app_key|db_password|db_server|db_username|dbpasswd|dbpassword|dbuser|deploy_password|digitalocean_ssh_key_body|digitalocean_ssh_key_ids|docker_hub_password|docker_key|docker_pass|docker_passwd|docker_password|dockerhub_password|dockerhubpassword|dot-files|dotfiles|droplet_travis_password|dynamoaccesskeyid|dynamosecretaccesskey|elastica_host|elastica_port|elasticsearch_password|encryption_key|encryption_password|env.heroku_api_key|env.sonatype_password|eureka.awssecretkey)[a-z0-9_ .\-,]{0,25})(=|>|:=|\|\|:|<=|=>|:).{0,5}[''\"\ ]([0-9a-zA-Z\-_=]{8,64})[''\"\ ])'
+    color: "red"
+  - name: "AccessKey泄露匹配式2"
+    loaded: true
+    regex: '([''\"\ ](GOOG[\w\W]{10,30})[''\"\ ]|([''\"\ ]AZ[A-Za-z0-9]{34,40}[''\"\ ])|([''\"\ ]AKID[A-Za-z0-9]{13,20}[''\"\ ])|([''\"\ ]AKIA[A-Za-z0-9]{16}[''\"\ ])|([''\"\ ][a-zA-Z0-9]{8}(-[a-zA-Z0-9]{4}){3}-[a-zA-Z0-9]{12}[''\"\ ])|([''\"\ ]OCID[A-Za-z0-9]{10,40}[''\"\ ])|([''\"\ ]LTAI[A-Za-z0-9]{12,20}[''\"\ ])|([''\"\ ][A-Z0-9]{20}$[''\"\ ])|([''\"\ ]JDC_[A-Z0-9]{28,32}[''\"\ ])|([''\"\ ]AK[A-Za-z0-9]{10,40}[''\"\ ])|([''\"\ ]UC[A-Za-z0-9]{10,40}[''\"\ ])|([''\"\ ]QY[A-Za-z0-9]{10,40}[''\"\ ])|([''\"\ ]AKLT[a-zA-Z0-9-_]{16,28}[''\"\ ])|([''\"\ ]LTC[A-Za-z0-9]{10,60}[''\"\ ])|([''\"\ ]YD[A-Za-z0-9]{10,60}[''\"\ ])|([''\"\ ]CTC[A-Za-z0-9]{10,60}[''\"\ ])|([''\"\ ]YYT[A-Za-z0-9]{10,60}[''\"\ ])|([''\"\ ]YY[A-Za-z0-9]{10,40}[''\"\ ])|([''\"\ ]CI[A-Za-z0-9]{10,40}[''\"\ ])|([''\"\ ]gcore[A-Za-z0-9]{10,30}[''\"\ ]))'
+    color: "red"
+  - name: "敏感信息泄漏"
+    loaded: true
+    regex: '((?i)((access_key|appsecret|app_secret|access_token|password|secretkey|accesskey|accesskeyid|accesskeysecret|secret_key|pwd|test_user|admin_pass|admin_user|algolia_admin_key|algolia_api_key|alias_pass|alicloud_access_key|amazon_secret_access_key|amazonaws|ansible_vault_password|aos_key|api_key|api_key_secret|api_key_sid|api_secret|api.googlemaps AIza|apidocs|apikey|apiSecret|app_debug|app_id|app_key|app_log_level|app_secret|appkey|appkeysecret|application_key|appsecret|appspot|auth_token|authorizationToken|authsecret|aws_access|aws_access_key_id|aws_bucket|aws_key|aws_secret|aws_secret_key|aws_token|AWSSecretKey|b2_app_key|bashrc password|bintray_apikey|bintray_gpg_password|bintray_key|bintraykey|bluemix_api_key|bluemix_pass|browserstack_access_key|bucket_password|bucketeer_aws_access_key_id|bucketeer_aws_secret_access_key|built_branch_deploy_key|bx_password|cache_driver|cache_s3_secret_key|cattle_access_key|cattle_secret_key|certificate_password|ci_deploy_password|client_secret|client_zpk_secret_key|clojars_password|cloud_api_key|cloud_watch_aws_access_key|cloudant_password|cloudflare_api_key|cloudflare_auth_key|cloudinary_api_secret|cloudinary_name|codecov_token|config|conn.login|connectionstring|consumer_key|consumer_secret|credentials|cypress_record_key|database_password|database_schema_test|datadog_api_key|datadog_app_key|db_password|db_server|db_username|dbpasswd|dbpassword|dbuser|deploy_password|digitalocean_ssh_key_body|digitalocean_ssh_key_ids|docker_hub_password|docker_key|docker_pass|docker_passwd|docker_password|dockerhub_password|dockerhubpassword|dot-files|dotfiles|droplet_travis_password|dynamoaccesskeyid|dynamosecretaccesskey|elastica_host|elastica_port|elasticsearch_password|encryption_key|encryption_password|env.heroku_api_key|env.sonatype_password|eureka.awssecretkey)[a-z0-9_.]{0,25})(=|>|:=|:|<=|=>|:).{0,5}[''\"\ ]([0-9a-zA-Z-_=]{12,64})[''\"\ ])'
+    color: "red"
+- group: "基本信息"
+  rules:
+  - name: "Internal IP Address"
+    loaded: true
+    regex: '[^0-9]((127\.0\.0\.1)|(10\.\d{1,3}\.\d{1,3}\.\d{1,3})|(172\.((1[6-9])|(2\d)|(3[01]))\.\d{1,3}\.\d{1,3})|(192\.168\.\d{1,3}\.\d{1,3}))'
+    color: "cyan"
+  - name: "MAC Address"
+    loaded: false
+    regex: '(^([a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5})|[^a-zA-Z0-9]([a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}))'
+    color: "green"
+- group: "自定义关键字"
+  rules:
+  - name: "Request Type"
+    loaded: true
+    regex: 'type\s*:\s*["''](POST|GET)["'']'
+    color: "blue"
+  - name: "Request Function"
+    loaded: true
+    regex: '\.(post|get)\s*\('
+    color: "blue"
+  - name: "ASHX Handler"
+    loaded: true
+    regex: '\.ashx'
+    color: "orange"
+  - name: "URL Keyword"
+    loaded: true
+    regex: 'url\s*:\s*["'']'
+    color: "purple"
+  - name: "Path Keyword"
+    loaded: true
+    regex: 'path\s*:\s*["'']'
+    color: "purple"
+  - name: "Action Keyword"
+    loaded: true
+    regex: 'action\?'
+    color: "purple"
+  - name: "Data Keyword"
+    loaded: true
+    regex: 'data\s*:'
+    color: "cyan"
+  - name: "Params Keyword"
+    loaded: true
+    regex: 'params\s*:'
+    color: "cyan"
+  - name: "AppID"
+    loaded: true
+    regex: '["'']appid["'']\s*:\s*["''](wx[a-f0-9]{16})["'']'
+    color: "red"
+  - name: "AppSecret"
+    loaded: true
+    regex: '["''](appsecret|appSecret)["'']\s*:\s*["'']([a-f0-9]{32})["'']'
+    color: "red"
+  - name: "List Keyword"
+    loaded: false
+    regex: '\blist\b'
+    color: "gray" 
